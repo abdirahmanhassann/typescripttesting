@@ -1,38 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 function App() {
+const [apistate,setapistate]=useState<product[]>()
+ 
+interface product{
+  title:string;
+  brand:string;
+price:string;
 
-  interface check{
-    name:string;
-    age:number;
-    male?:boolean;
-  }
-  const ppl:{name:string,age:number,male?:boolean}[]= [
-    {
-       name:'person1',
-       age:41,
-       male:true
-     }
-    , 
-     {
-       name:'person2',
-       age:20,
-male:false
-     }
-    ]
+}
+useEffect(()=>{
+function api(){
+  fetch('https://dummyjson.com/products')
+  .then(res => res.json())
+  .then(res => {setapistate(res.products)
+  console.log(res)
+  })  
+}
+
+api()
+},[])
+
   return (
     <>
-    {
-ppl.map((i)=>{
-  return(
-<>
-    <h1>{i.name}</h1>
-    <h1>{i.age}</h1>
-    <h1>{i.male?'true':'false'}</h1>
-    </>
-    )
-})
+{
+  apistate &&
+  apistate.map((i)=>{
+    return(
+
+      <div style={{width:'fit-content',height:'fit-content',background:'wheat',padding:'50px'}}>
+<h3>{i.title}</h3>
+<p>{i.brand}</p>
+<p>{i.price}</p>
+    </div>
+      )
+  })
 }
     </>
   );
