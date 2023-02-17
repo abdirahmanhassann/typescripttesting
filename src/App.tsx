@@ -1,40 +1,49 @@
 import logo from './logo.svg';
-import './App.css';
 import React, { useEffect, useState } from 'react';
 function App() {
-const [apistate,setapistate]=useState<product[]>()
- 
-interface product{
-  title:string;
-  brand:string;
-price:string;
+const [textt,settext]=useState('')
+const [todos,settodos]=useState<string[]>([])
 
+// function clicked(text){
+//   if(todos){
+//     settodos([...todos,text])
+//     console.log(todos);
+//     console.log('po')
+//     settext('');
+//   }
+// }
+function del(i:string){
+  console.log(i)
+  todos.filter((h)=>{return h!=i})
 }
-useEffect(()=>{
-function api(){
-  fetch('https://dummyjson.com/products')
-  .then(res => res.json())
-  .then(res => {setapistate(res.products)
-  console.log(res)
-  })  
-}
-
-api()
-},[])
-
   return (
     <>
+    <form >
+<input type='text' value={textt} onChange={(e)=>settext(e.target.value)}/>
+<button type='submit' onClick={(e)=>{
+  e.preventDefault();
+      settodos([...todos,textt])
+      console.log(todos);
+      console.log(textt)
+      settext('');
+  
+}
+}>Enter</button>
+</form>
 {
-  apistate &&
-  apistate.map((i)=>{
+  todos.map((i)=>{
     return(
-
-      <div style={{width:'fit-content',height:'fit-content',background:'wheat',padding:'50px'}}>
-<h3>{i.title}</h3>
-<p>{i.brand}</p>
-<p>{i.price}</p>
-    </div>
-      )
+      <>
+      <div>{i}
+      <button onClick={()=>{
+          console.log(i)
+         let k= todos.filter(v=>{return v!=i})
+settodos(k)
+        
+      }}>delete</button>
+      </div>
+        </>
+    )
   })
 }
     </>
