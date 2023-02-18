@@ -1,53 +1,37 @@
 import logo from './logo.svg';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 function App() {
-const [textt,settext]=useState('')
-const [todos,settodos]=useState<string[]>([])
+  class employee {
+    name: string;
+    job: string;  
+constructor(name:string,job:string){
+this.name=name
+this.job=job
+}
+getName=()=>{return this.name}
+getJob=()=>{return this.job}
+  }
 
-// function clicked(text){
-//   if(todos){
-//     settodos([...todos,text])
-//     console.log(todos);
-//     console.log('po')
-//     settext('');
-//   }
-// }
-function del(i:string){
-  console.log(i)
-  todos.filter((h)=>{return h!=i})
-}
-  return (
-    <>
-    <form >
-<input type='text' value={textt} onChange={(e)=>settext(e.target.value)}/>
-<button type='submit' onClick={(e)=>{
-  e.preventDefault();
-      settodos([...todos,textt])
-      console.log(todos);
-      console.log(textt)
-      settext('');
+  const clint =new employee('clint','warehouse operative')
+  const po =new employee ('po','security guard')
+
+  class iqrange{
+    iq:number;
+    people:{name:string,job:string}[]
+    constructor(iq:number,people:{name:string,job:string}[]){
+this.iq=iq
+this.people=people
+    }
+    getIq=()=>{return this.iq}
+    getpeople=()=>{return this.people}
+  }
   
-}
-}>Enter</button>
-</form>
-{
-  todos.map((i)=>{
+  const countryy=new iqrange(80,[clint,po])
+  console.log(countryy)
     return(
-      <>
-      <div>{i}
-      <button onClick={()=>{
-          console.log(i)
-         let k= todos.filter(v=>{return v!=i})
-settodos(k)
-        
-      }}>delete</button>
-      </div>
-        </>
+<></>
     )
-  })
-}
-    </>
-  );
+  
 }
 
 export default App;
