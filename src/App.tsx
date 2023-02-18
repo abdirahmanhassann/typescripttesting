@@ -13,9 +13,7 @@ this.age=age
 getName=()=>{return this.name}
 getJob=()=>{return this.job}
 addyear=()=>{this.age=this.age+1}
-setAge=(age)=>{
-  this.age=age
-}
+getage=()=>{return this.age}
   }
 
   const clint =new employee('clint','warehouse operative',0)
@@ -43,6 +41,7 @@ this.people=people
     }
   }
   
+
   const countryy=new range(80,[clint,po])
   const ez=new employee('eezy','sales assistant',20)
   countryy.addpeople(ez)
@@ -55,7 +54,24 @@ this.people=people
   becky.addyear()
   abdirahman.addyear()
   console.log(country2)
+
+  class dev extends employee{
+    experience:number;
+    language:string;
+constructor(experience:number,language:string,name:string,job:string,age:number){
+  super(name,job,age)
+this.experience=experience
+this.language=language
+}    
+showjob=()=>{ console.log(`Hi! my name is ${this.getName()} im a ${this.getJob()},I am ${this.getage()} years old.
+i program in ${this.language} and i have ${this.experience} years experience`)}
+  }
+
+  const podev=new dev(10,'python','Po poeski','Web developer',45)
+  podev.showjob()
+  console.log(podev)
     return(
+    
 <></>
     )
   
